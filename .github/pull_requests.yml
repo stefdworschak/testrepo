@@ -1,0 +1,19 @@
+name: Add Pull Request to Data
+
+on:
+  pull_request:
+    types:
+      - created
+      - edited
+      - closed
+      - reopened
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Print PR
+        run: echo ${{github.event.number}}
