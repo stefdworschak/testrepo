@@ -3,7 +3,7 @@ name: Add Pull Request to Data
 on:
   pull_request:
     types:
-      - created
+      - opened
       - edited
       - closed
       - reopened
