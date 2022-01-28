@@ -9,4 +9,5 @@ jobs:
   update_data:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{github.event}}
+      - run: echo ${{github.event.number}}
+      - run: echo ${{ github.repository }}
