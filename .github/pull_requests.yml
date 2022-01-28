@@ -2,11 +2,7 @@ name: Add Pull Request to Data
 
 on:
   pull_request:
-    types:
-      - opened
-      - edited
-      - closed
-      - reopened
+    types: [opened, reopened, edited, closed]
 
 jobs:
   build:
