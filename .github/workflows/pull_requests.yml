@@ -14,11 +14,14 @@ jobs:
         run: ls -l
       - name: Retrieve Pull Request Details from API
         run: python3 actions/update_data.py ${{github.repository}} ${{github.event.number}}
-      - name: Commit and push changes
+      - name: Commit changes
         run: |
-          git config --global user.name "noreply@bot.codeinstitute.net"
-          git config --global user.email "GitHub Action Bot"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Add changes to index" -a
 
-          git add -A
-          git commit -m "commit message"
-          git push
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          branch: 'main'
