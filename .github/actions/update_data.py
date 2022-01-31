@@ -3,12 +3,15 @@ import json
 import requests
 
 DEFAULT_DATA_FILE_PATH = '.github/data/pull_requests.json'
-JS_FILE_PATH = '.github/js_scipts/data_url.js'
+JS_FILE_PATH = '.github/js/data_url.js'
+
 
 def write_js_variable(path):
+    import os; print(os.getcwd())
     js_content = "<script>const DATA_URL = '%(path)s'</script>" % path
     open(JS_FILE_PATH, 'w+').write(js_content)
     return
+
 
 def main(args):
     request_params = {}
@@ -26,6 +29,7 @@ def main(args):
     data.setdefault(pull_request_number, {})
     data[pull_request_number] = res.json()
     json.dump(data, open(args.data_file_path, 'w+'), indent=4, default=str)
+    write_js_variable({"path": args.data_file_path})
     return
 
 
