@@ -13,8 +13,7 @@ def main(args):
     res = requests.get(url, params=request_params)
     if res.status_code != 200:
         raise Exception(res.content)
-    
-    data = json.load(open('.github/data/data.json'))
+    data = json.load(open('.github/data/pull_requests.json'))
     data.setdefault(pull_request_number, {})
     data[pull_request_number] = res.json()
     json.dump(data, open('data.json', 'w+'), indent=4, default=str)
