@@ -1,0 +1,33 @@
+name: Add Pull Request to Data
+
+on:
+  pull_request:
+    types: [opened, reopened, edited, closed]
+
+jobs:
+
+  update_data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Pull changes
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git config pull.rebase true
+          git pull origin ${{ secrets.PUSH_TO_BRANCH }}
+
+      - name: Retrieve Pull Request Details from API
+        run: python3 .github/actions/update_data.py ${{github.repository}} ${{github.event.number}}
+
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "Add changes to index" -a
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          branch: ${{ secrets.PUSH_TO_BRANCH }}
