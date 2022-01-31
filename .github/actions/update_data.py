@@ -2,6 +2,8 @@ import argparse
 import json
 import requests
 
+DATA_FILE = 
+
 
 def main(args):
     request_params = {}
@@ -17,7 +19,7 @@ def main(args):
     data = json.load(open('.github/data/pull_requests.json'))
     data.setdefault(pull_request_number, {})
     data[pull_request_number] = res.json()
-    json.dump(data, open('data.json', 'w+'), indent=4, default=str)
+    json.dump(data, open('.github/data/pull_requests.json', 'w+'), indent=4, default=str)
     return
 
 
@@ -25,5 +27,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("repository", help="GitHub owner/repo combination", type=str)
     parser.add_argument("pull_request_number", help="Number of the Pull Request in the specified owner/repo", type=str)
+    parser.add_argument("data_file_path", help="GitHub owner/repo combination", type=str)
     args = parser.parse_args()
     main(args)
