@@ -13,7 +13,7 @@ jobs:
       - name: List files and folders
         run: ls -l
       - name: Retrieve Pull Request Details from API
-        run: python3 actions/update_data.py ${{github.repository}} ${{github.event.number}}
+        run: python3 .github/actions/update_data.py ${{github.repository}} ${{github.event.number}}
       - name: Commit changes
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
