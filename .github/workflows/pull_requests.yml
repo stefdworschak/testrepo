@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: List files and folders
+        run: ls -l
       - name: Retrieve Pull Request Details from API
         run: python3 actions/update_data.py ${{github.repository}} ${{github.event.number}}
       - name: Commit and push changes
