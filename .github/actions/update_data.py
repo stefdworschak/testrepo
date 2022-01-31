@@ -8,7 +8,7 @@ JS_FILE_PATH = '.github/js/data_url.js'
 
 def write_js_variable(path):
     import os; print(os.getcwd())
-    js_content = "<script>const DATA_URL = '%(path)s'</script>" % path
+    js_content = "const DATA_URL = '%(path)s';" % path
     open(JS_FILE_PATH, 'w+').write(js_content)
     return
 

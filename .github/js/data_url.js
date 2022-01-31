@@ -1,1 +1,1 @@
-<script>const DATA_URL = '.github/data/pull_requests.json'</script>
+const DATA_URL = '.github/data/pull_requests.json';
