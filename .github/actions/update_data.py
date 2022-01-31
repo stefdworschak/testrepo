@@ -2,6 +2,7 @@ import argparse
 import json
 import requests
 
+
 def main(args):
     request_params = {}
     pull_request_number = str(args.pull_request_number)
@@ -18,6 +19,7 @@ def main(args):
     data[pull_request_number] = res.json()
     json.dump(data, open('data.json', 'w+'), indent=4, default=str)
     return
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
